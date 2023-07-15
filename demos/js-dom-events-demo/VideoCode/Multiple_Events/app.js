@@ -23,30 +23,34 @@
 // 	input.value = '';
 // });
 
-const form = document.querySelector('#add-friend');
-const input = document.querySelector('#first-name');
-const friendList = document.querySelector('#friend-list');
+const form = document.querySelector("#add-friend");
+const input = document.querySelector("#first-name");
+const friendList = document.querySelector("#friend-list");
+let clickCount = 0;
 
-friendList.addEventListener('click', function(e) {
-	if (e.target.tagName === 'BUTTON') {
-		e.target.parentElement.remove();
-	}
-	else if (e.target.tagName === 'LI') {
-		e.target.classList.add('best-friend');
-		const heart = document.createElement('span');
-		heart.innerHTML = '&hearts;';
-		e.target.prepend(heart);
-	}
+friendList.addEventListener("click", function (e) {
+  clickCount++;
+  if (e.target.tagName === "BUTTON") {
+    e.target.parentElement.remove();
+  } else if (e.target.tagName === "LI") {
+    e.target.classList.add("best-friend");
+    const heart = document.createElement("span");
+    heart.innerHTML = "&hearts;";
+    e.target.prepend(heart);
+    if (clickCount > 5) {
+      e.target.classList.add("hearts");
+    }
+  }
 });
 
-form.addEventListener('submit', function(e) {
-	e.preventDefault();
-	const newFriend = document.createElement('li');
-	const removeBtn = document.createElement('button');
-	removeBtn.innerText = 'UnFriend';
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const newFriend = document.createElement("li");
+  const removeBtn = document.createElement("button");
+  removeBtn.innerText = "UnFriend";
 
-	newFriend.innerText = input.value;
-	newFriend.appendChild(removeBtn);
-	friendList.appendChild(newFriend);
-	input.value = '';
+  newFriend.innerText = input.value;
+  newFriend.appendChild(removeBtn);
+  friendList.appendChild(newFriend);
+  input.value = "";
 });
