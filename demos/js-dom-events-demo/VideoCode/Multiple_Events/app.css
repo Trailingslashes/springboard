@@ -1,8 +1,11 @@
 .best-friend {
   color: purple;
   font-weight: bold;
+  user-select: none;
 }
 
 .hearts {
   color: red;
+  user-select: none;
+  font-weight: bold;
 }

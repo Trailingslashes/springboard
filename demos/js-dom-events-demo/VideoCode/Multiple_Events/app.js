@@ -26,13 +26,14 @@
 const form = document.querySelector("#add-friend");
 const input = document.querySelector("#first-name");
 const friendList = document.querySelector("#friend-list");
-let clickCount = 0;
 
 friendList.addEventListener("click", function (e) {
-  clickCount++;
   if (e.target.tagName === "BUTTON") {
     e.target.parentElement.remove();
   } else if (e.target.tagName === "LI") {
+    let clickCount = Number(e.target.getAttribute("data-clicks")) || 0;
+    clickCount++;
+    e.target.setAttribute("data-clicks", clickCount);
     e.target.classList.add("best-friend");
     const heart = document.createElement("span");
     heart.innerHTML = "&hearts;";
